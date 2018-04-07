@@ -59,6 +59,14 @@ func TestGetRange(t *testing.T) {
 	if lowerBound != 25 || upperBound != 50 {
 		t.Fatalf("Range should be [25, 50], is [%d, %d]", lowerBound, upperBound)
 	}
+
+	// Test when the words can't fit on the billboard no matter which fontsize you use
+	width, height, fontSize = 3, 100, 33
+
+	lowerBound, upperBound = GetRange(listWords, width, height, fontSize)
+	if lowerBound != 0 || upperBound != 1 {
+		t.Fatalf("Range should be [0, 1], is [%d, %d]", lowerBound, upperBound)
+	}
 }
 
 func TestMin(t *testing.T) {

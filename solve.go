@@ -40,7 +40,7 @@ func GetRange(listWords []string, width, height, fontSize uint) (lowerBound, upp
 		upperBound = fontSize
 	} else {
 		fontSize /= 2
-		for !FitsOnBillboard(listWords, width, height, fontSize) {
+		for fontSize > 0 && !FitsOnBillboard(listWords, width, height, fontSize) {
 			previousSize = fontSize
 			fontSize /= 2
 		}
