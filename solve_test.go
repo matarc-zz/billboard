@@ -86,3 +86,59 @@ func TestMax(t *testing.T) {
 		t.Fatalf("Max(5, 2) should be 5")
 	}
 }
+
+func TestSolve(t *testing.T) {
+	// Test when width > height
+	listWords := []string{"Facebook", "Hacker", "Cup", "2013"}
+	var width, height uint = 350, 100
+
+	fontSize := Solve(listWords, width, height)
+	if fontSize != 33 {
+		t.Fatalf("%v should fit on a %dx%d board with a 33 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+	// Test when width < height
+	listWords = []string{"MUST", "BE", "ABLE", "TO", "HACK"}
+	width, height = 10, 20
+
+	fontSize = Solve(listWords, width, height)
+	if fontSize != 2 {
+		t.Fatalf("%v should fit on a %dx%d board with a 2 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+	// Test when fontSize should equal 1
+	listWords = []string{"ThisIsASuperLongWordThatYouCouldNeverDreamOf"}
+	width, height = 50, 20
+
+	fontSize = Solve(listWords, width, height)
+	if fontSize != 1 {
+		t.Fatalf("%v should fit on a %dx%d board with a 1 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+	// Test when fontSize should equal 0
+	listWords = []string{"ThisIsASuperLongWordThatYouCouldNeverDreamOf"}
+	width, height = 10, 20
+
+	fontSize = Solve(listWords, width, height)
+	if fontSize != 0 {
+		t.Fatalf("%v should fit on a %dx%d board with a 0 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+	// Test when fontsize < whRatio
+	listWords = []string{"SixSix", "SixSix", "SixSix", "SixSix", "SixSix", "SixSix"}
+	width, height = 252, 6
+
+	fontSize = Solve(listWords, width, height)
+	if fontSize != 6 {
+		t.Fatalf("%v should fit on a %dx%d board with a 6 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+	listWords = []string{"hacker", "cup"}
+	width, height = 20, 6
+
+	fontSize = Solve(listWords, width, height)
+	if fontSize != 3 {
+		t.Fatalf("%v should fit on a %dx%d board with a 3 fontSize instead it fits with %d fontSize", listWords, width, height, fontSize)
+	}
+
+}

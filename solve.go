@@ -64,3 +64,25 @@ func Max(a, b uint) uint {
 	}
 	return a
 }
+
+func Solve(listWords []string, width, height uint) (fontSize uint) {
+	// The next 3 lines here are our heuristic and allows us to have a starting point
+	min, max := Min(width, height), Max(width, height)
+	whRatio := max / min
+	fontSize = min / whRatio
+	if fontSize == 0 {
+		fontSize = max / whRatio
+	}
+
+	lowerBound, upperBound := GetRange(listWords, width, height, fontSize)
+	fontSize = (lowerBound + upperBound) / 2
+	for lowerBound < fontSize {
+		if FitsOnBillboard(listWords, width, height, fontSize) {
+			lowerBound = fontSize
+		} else {
+			upperBound = fontSize
+		}
+		fontSize = (lowerBound + upperBound) / 2
+	}
+	return fontSize
+}
