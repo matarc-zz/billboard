@@ -24,3 +24,25 @@ func FitsOnBillboard(listWords []string, width, height, fontSize uint) bool {
 	}
 	return true
 }
+
+func GetRange(listWords []string, width, height, fontSize uint) (lowerBound, upperBound uint) {
+	previousSize := fontSize
+	if FitsOnBillboard(listWords, width, height, fontSize) {
+		fontSize *= 2
+		for FitsOnBillboard(listWords, width, height, fontSize) {
+			previousSize = fontSize
+			fontSize *= 2
+		}
+		lowerBound = previousSize
+		upperBound = fontSize
+	} else {
+		fontSize /= 2
+		for !FitsOnBillboard(listWords, width, height, fontSize) {
+			previousSize = fontSize
+			fontSize /= 2
+		}
+		lowerBound = fontSize
+		upperBound = previousSize
+	}
+	return lowerBound, upperBound
+}
