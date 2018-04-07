@@ -1,6 +1,9 @@
 package main
 
 func FitsOnBillboard(listWords []string, width, height, fontSize uint) bool {
+	if fontSize == 0 {
+		return false
+	}
 	var numberOfCharPerLine int = int(width / fontSize)
 	var charSpaceLeftOnCurrentLine int = int(numberOfCharPerLine)
 	var numberOfLineLeft int = int(height / fontSize)
