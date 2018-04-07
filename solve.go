@@ -46,3 +46,18 @@ func GetRange(listWords []string, width, height, fontSize uint) (lowerBound, upp
 	}
 	return lowerBound, upperBound
 }
+
+// Let's avoid having int to float conversion with the math package and just make our own max min functions
+func Min(a, b uint) uint {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func Max(a, b uint) uint {
+	if a < b {
+		return b
+	}
+	return a
+}

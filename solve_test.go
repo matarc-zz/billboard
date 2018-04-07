@@ -60,3 +60,21 @@ func TestGetRange(t *testing.T) {
 		t.Fatalf("Range should be [25, 50], is [%d, %d]", lowerBound, upperBound)
 	}
 }
+
+func TestMin(t *testing.T) {
+	if Min(2, 5) != 2 {
+		t.Fatalf("Min(2, 5) should be 2")
+	}
+	if Min(5, 2) != 2 {
+		t.Fatalf("Min(5, 2) should be 2")
+	}
+}
+
+func TestMax(t *testing.T) {
+	if Max(2, 5) != 5 {
+		t.Fatalf("Max(2, 5) should be 5")
+	}
+	if Max(5, 2) != 5 {
+		t.Fatalf("Max(5, 2) should be 5")
+	}
+}
